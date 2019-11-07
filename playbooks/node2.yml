@@ -98,10 +98,5 @@
   - name: Starting services
     service: name=firewalld state=started
     tags: repo
-  - name: Creating Welcome Message
-    file:
-      path: /etc/profile.d/welcome.sh
-      state: touch
-      mode: 0755
   - name: Erasing Repos
     shell: rm -rf /etc/yum.repos.d/*

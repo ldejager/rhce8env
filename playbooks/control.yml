@@ -61,6 +61,16 @@
       path: /etc/hosts
       line: 192.168.55.204 node4.example.com node4
       create: yes
+  - name: Adding node5 address to hosts file
+    lineinfile:
+      path: /etc/hosts
+      line: 192.168.55.205 node5.example.com node5
+      create: yes
+  - name: Adding node6 address to hosts file
+    lineinfile:
+      path: /etc/hosts
+      line: 192.168.55.206 node6.example.com node6
+      create: yes
   - name: Erasing Repos
     shell: rm -rf /etc/yum.repos.d/*
   - name: Creating Temporary Repo File
@@ -97,16 +107,11 @@
   - name: Reloaded Network.
     shell: nmcli con up "System eth1"
   - name: Generating RSA Key
-    command : ssh-keygen -q -t rsa -f /home/user/.ssh/id_rsa -C "" -N ""
+    command: ssh-keygen -q -t rsa -f /home/user/.ssh/id_rsa -C "" -N ""
     become: yes
     become_user: user
   - name: Disabling services
     selinux:
       state: disabled
-  - name: Creating Welcome Message
-    file:
-      path: /etc/profile.d/welcome.sh
-      state: touch
-      mode: 0755
   - name: Erasing Repos
     shell: rm -rf /etc/yum.repos.d/*

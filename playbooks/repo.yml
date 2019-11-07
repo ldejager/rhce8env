@@ -53,6 +53,16 @@
       path: /etc/hosts
       line: 192.168.55.204 node4.example.com node4
       create: yes
+  - name: Adding node5 address to hosts file
+    lineinfile:
+      path: /etc/hosts
+      line: 192.168.55.205 node5.example.com node5
+      create: yes
+  - name: Adding node6 address to hosts file
+    lineinfile:
+      path: /etc/hosts
+      line: 192.168.55.206 node6.example.com node6
+      create: yes
   - name: Enabling services
     shell: for i in httpd firewalld ; do systemctl enable $i;done
   - name: Starting services
@@ -66,10 +76,5 @@
     command: firewall-cmd --reload
   - name: Enabling IPV6
     shell: sysctl net.ipv6.conf.lo.disable_ipv6=0 ; sysctl net.ipv6.conf.all.disable_ipv6=0
-  - name: Creating Welcome Message
-    file:
-      path: /etc/profile.d/welcome.sh
-      state: touch
-      mode: 0755
   - name: Fixing SELinux Contexts
     shell: restorecon -Rv /var/www/html

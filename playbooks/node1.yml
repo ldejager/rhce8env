@@ -99,10 +99,5 @@
     tags: repo
   - name: Fixing Resolv File
     shell: echo 'nameserver 8.8.8.8' > /etc/resolv.conf
-  - name: Creating Welcome Message
-    file:
-      path: /etc/profile.d/welcome.sh
-      state: touch
-      mode: 0755
   - name: Erasing Repos
     shell: rm -rf /etc/yum.repos.d/*

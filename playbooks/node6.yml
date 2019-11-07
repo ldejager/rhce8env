@@ -1,11 +1,11 @@
 ---
-- hosts: node3
+- hosts: node6
   strategy: free
   gather_facts: False
   become: true
   tasks:
   - name: Setting Hostname
-    command: hostnamectl set-hostname node3.example.com
+    command: hostnamectl set-hostname node6.example.com
   - name: Creating Ansible User
     user:
       name: user
@@ -57,10 +57,10 @@
       path: /etc/hosts
       line: 192.168.55.203 node3.example.com node3
       create: yes
-  - name: Adding node4 address to hosts file
+  - name: Adding node6 address to hosts file
     lineinfile:
       path: /etc/hosts
-      line: 192.168.55.204 node4.example.com node4
+      line: 192.168.55.206 node6.example.com node6
       create: yes
   - name: Erasing Repos
     shell: rm -rf /etc/yum.repos.d/*
@@ -86,7 +86,7 @@
        enabled=1
     tags: repo
   - name: Configuring network
-    command: nmcli con mod "System eth1" ipv4.addresses 192.168.55.203/24 ipv4.gateway 192.168.55.1 ipv4.method manual
+    command: nmcli con mod "System eth1" ipv4.addresses 192.168.55.206/24 ipv4.gateway 192.168.55.1 ipv4.method manual
   - name: Enabling IPV6
     shell: sysctl net.ipv6.conf.lo.disable_ipv6=0 ; sysctl net.ipv6.conf.all.disable_ipv6=0
   - name: Environment Packages Installed.
