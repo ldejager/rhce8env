@@ -56,11 +56,11 @@
       path: /etc/hosts
       line: 192.168.55.203 node3.example.com node3
       create: yes
-#  - name: Adding node4 address to hosts file
-#    lineinfile:
-#      path: /etc/hosts
-#      line: 192.168.55.204 node4.example.com node4
-#      create: yes
+  - name: Adding node4 address to hosts file
+    lineinfile:
+      path: /etc/hosts
+      line: 192.168.55.204 node4.example.com node4
+      create: yes
   - name: Erasing Repos
     shell: rm -rf /etc/yum.repos.d/*
   - name: Creating Temporary Repo File
@@ -77,7 +77,7 @@
        baseurl=http://repo/BaseOS
        gpgcheck=0
        enabled=1
-       
+
        [apps]
        name=Apps
        baseurl=http://repo/AppStream
@@ -110,31 +110,3 @@
       mode: 0755
   - name: Erasing Repos
     shell: rm -rf /etc/yum.repos.d/*
-  - name: Building Welcome Message
-    blockinfile:
-      dest: /etc/profile.d/welcome.sh
-      block: |
-        #!/bin/bash
-        #
-        echo -e '       
-        #            _            _           _          _           _          _           _     
-        #          /\ \          /\ \        /\ \     _ /\ \        /\ \       /\ \        _\ \   
-        #         /  \ \        /  \ \      /  \ \   /\_\_\ \      /  \ \     /  \ \      /\__ \  
-        #        / /\ \ \      / /\ \ \    / /\ \ \_/ / /\__ \    / /\ \ \   / /\ \ \    / /_ \_\ 
-        #       / / /\ \ \    / / /\ \ \  / / /\ \___/ / /_ \ \  / / /\ \_\ / / /\ \ \  / / /\/_/ 
-        #      / / /  \ \_\  / / /  \ \_\/ / /  \/____/ / /\ \ \/ / /_/ / // / /  \ \_\/ / /      
-        #     / / /    \/_/ / / /   / / / / /    / / / / /  \/_/ / /__\/ // / /   / / / / /       
-        #    / / /         / / /   / / / / /    / / / / /     / / /_____// / /   / / / / / ____   
-        #   / / /________ / / /___/ / / / /    / / / / /     / / /\ \ \ / / /___/ / / /_/_/ ___/\ 
-        #  / / /_________/ / /____\/ / / /    / / /_/ /     / / /  \ \ / / /____\/ /_______/\__\/ 
-        #  \/____________\/_________/\/_/     \/_/\_\/      \/_/    \_\\/_________/\_______\/     
-        '"#
-        #
-        # You are logged into \"`hostname`\" as user \"`whoami`\"
-        # This system is running `cat /etc/redhat-release`
-        # kernel is `uname -r`
-        #
-        #
-        # Repo/AppStream 
-        # Available to use from http://repo.example.com/BaseOS and http://repo.example.com/AppStream
-        "

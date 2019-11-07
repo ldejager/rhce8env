@@ -1,4 +1,5 @@
-.vagrant/
-disk-0-1.vdi/
-disk-0-2.vdi/
-*.retry.yml/
+.vagrant
+disk-0-1.vdi
+disk-0-2.vdi
+disk-0-3.vdi
+*.retry.yml
